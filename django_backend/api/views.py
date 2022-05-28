@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
@@ -5,6 +6,8 @@ from rest_framework import status
 from .models import AlignmentRun
 from .serializers import *
 
+def index(request):
+    return HttpResponse('Django example')
 
 @api_view(['GET', 'POST'])
 def alignment_runs_list(request):
