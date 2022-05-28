@@ -1,9 +1,7 @@
 function Stats() {
   return (
-    <main style={{ padding: "1rem 0" }}>
-      <h2>Statistics</h2>
-    </main>
+    <h2>Statistics</h2>
   );
 }
 
-export default Stats
+export default Stats;
