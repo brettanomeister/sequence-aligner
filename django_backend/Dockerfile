@@ -7,7 +7,7 @@ ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 # Set work directory
-WORKDIR /code/django_api
+WORKDIR /code/django_backend
 
 # Install dependencies
 COPY ./requirements.txt .
