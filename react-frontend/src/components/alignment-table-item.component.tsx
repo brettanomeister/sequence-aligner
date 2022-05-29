@@ -4,6 +4,10 @@ interface AlignmentTableItemProps {
   alignment: Alignment;
 }
 
+function truncate(str: string, n: number){
+  return (str.length > n) ? str.substr(0, n-1) + '...' : str;
+};
+
 function AlignmentTableItem({alignment}: AlignmentTableItemProps) {
   return (
     <tr>
@@ -13,7 +17,7 @@ function AlignmentTableItem({alignment}: AlignmentTableItemProps) {
       <td>{alignment.genome_ref_seq}</td>
       <td>{alignment.start_position}</td>
       <td>{alignment.end_position}</td>
-      <td>{alignment.matched_fragment}</td>
+      <td>{truncate(alignment.matched_fragment, 90)}</td>
     </tr>
   );
 }

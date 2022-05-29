@@ -14,22 +14,6 @@ async function getAlignmentRuns() {
 }
 
 function RunAccordion() {
-  // const demoRuns: AlignmentRun[] = [
-  //     {
-  //       pk: 3825,
-  //       name: "test run",
-  //       description: "Lorem ipsum dolor set",
-  //       query: "gattaca",
-  //       submitted_at: "05-29-2022"
-  //     },
-  //     {
-  //       pk: 3826,
-  //       name: "test run",
-  //       description: "Lorem ipsum dolor set",
-  //       query: "gattaca",
-  //       submitted_at: "05-29-2022"
-  //     }
-  //   ]
 
   const runsQres = useQuery<AlignmentRun[], Error>('runs', () => getAlignmentRuns());
 

@@ -14,26 +14,6 @@ async function getAlignments() {
 }
 
 function AlignmentTable() {
-  // const demoAlignments: Alignment[] = [
-  //   {
-  //     pk: 9936,
-  //     alignment_run_fk: 1,
-  //     protein_ref_seq: "NP_2346",
-  //     genome_ref_seq: "NC_99846",
-  //     matched_fragment: "gattacac",
-  //     start_position: 0,
-  //     end_position: 7
-  //   },
-  //   {
-  //     pk: 9937,
-  //     alignment_run_fk: 2,
-  //     protein_ref_seq: "NP_2300",
-  //     genome_ref_seq: "NC_99846",
-  //     matched_fragment: "gcattaca",
-  //     start_position: 2,
-  //     end_position: 8
-  //   }
-  // ]
 
   const alignmentsQres = useQuery<Alignment[], Error>('alignments', () => getAlignments());
 
