@@ -1,4 +1,4 @@
-import AlignmentList from "./alignment-list.component";
+import AlignmentTable from "./alignment-table.component";
 import {Container, Col, Row} from "react-bootstrap";
 
 function SuccessfulAlignments() {
@@ -7,7 +7,7 @@ function SuccessfulAlignments() {
       <Row>
         <Col>
           <h2>Successful Alignments</h2>
-          <AlignmentList />
+          <AlignmentTable />
         </Col>
       </Row>
     </Container>

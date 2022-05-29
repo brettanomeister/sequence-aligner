@@ -1,5 +1,5 @@
 export interface AlignmentRun {
-  _id: string;
+  pk: number;
   name: string;
   description: string;
   query: string;

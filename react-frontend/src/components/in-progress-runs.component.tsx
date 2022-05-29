@@ -1,4 +1,4 @@
-import RunList from "./run-list.component";
+import RunAccordion from "./run-accordion.component";
 import {Container, Col, Row} from "react-bootstrap";
 
 function InProgressRuns() {
@@ -8,7 +8,7 @@ function InProgressRuns() {
         <Col xs lg="1" />
         <Col md="10">
           <h2>In-Progress Runs</h2>
-          <RunList />
+          <RunAccordion />
         </Col>
         <Col xs lg="1" />
       </Row>

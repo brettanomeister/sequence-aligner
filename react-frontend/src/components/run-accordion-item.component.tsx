@@ -1,13 +1,13 @@
 import {Accordion, ProgressBar} from "react-bootstrap";
 import {AlignmentRun} from "../models/alignment-run.interface";
 
-interface RunListItemProps {
+interface RunAccordionItemProps {
   run: AlignmentRun;
 }
 
-function RunListItem({run}: RunListItemProps) {
+function RunAccordionItem({run}: RunAccordionItemProps) {
   return (
-    <Accordion.Item eventKey={run._id}>
+    <Accordion.Item eventKey={run.pk.toString()}>
       <Accordion.Header>
         {run.name} - Submitted: {run.submitted_at}
       </Accordion.Header>
@@ -19,4 +19,4 @@ function RunListItem({run}: RunListItemProps) {
   );
 }
 
-export default RunListItem;
+export default RunAccordionItem;
