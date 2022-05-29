@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
 import App from './App';
-import Stats from './pages/stats';
-import Runs from "./pages/runs";
+import StatsPage from './layouts/stats.layout';
+import RunsPage from "./layouts/runs.layout";
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(
@@ -14,8 +14,8 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />}>
-          <Route path="stats" element={<Stats />} />
-          <Route index element={<Runs />} />
+          <Route path="stats" element={<StatsPage />} />
+          <Route index element={<RunsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

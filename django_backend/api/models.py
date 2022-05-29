@@ -13,6 +13,7 @@ class AlignmentRun(models.Model):
 
 
 class Alignment(models.Model):
+    # change to alignment_run_id
     alignment_run = models.ForeignKey(AlignmentRun, on_delete=models.CASCADE)
     protein_ref_seq = models.CharField("Protein Reference Sequence", max_length=120)
     genome_ref_seq = models.CharField("Genome Reference Sequence", max_length=120)

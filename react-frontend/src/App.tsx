@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import Header from "./components/header";
+import Header from "./page-elements/header";
 import {Outlet} from "react-router-dom";
 import {QueryClient, QueryClientProvider} from 'react-query';
 
