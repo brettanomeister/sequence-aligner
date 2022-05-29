@@ -21,5 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path("", views.index, name="index"),
     re_path(r'^api/alignment-runs/$', views.alignment_runs_list),
-    re_path(r'^api/alignment-runs/(\d)$', views.alignment_runs_detail),
+    re_path(r'^api/alignment-runs/(\d)$', views.alignment_run_detail),
+    re_path(r'^api/alignments/$', views.alignments_list),
+    re_path(r'^api/alignments/(\d)$', views.alignment_detail),
 ]

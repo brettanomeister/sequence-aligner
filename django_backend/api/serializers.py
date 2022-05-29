@@ -19,9 +19,9 @@ class AlignmentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alignment
         fields = ('pk',
-                  'alignment_run',
+                  'alignment_run_fk',
                   'protein_ref_seq',
                   'genome_ref_seq',
-                  'matched_fragement',
+                  'matched_fragment',
                   'start_position',
                   'end_position')

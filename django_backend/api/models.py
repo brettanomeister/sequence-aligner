@@ -13,11 +13,10 @@ class AlignmentRun(models.Model):
 
 
 class Alignment(models.Model):
-    # change to alignment_run_id
-    alignment_run = models.ForeignKey(AlignmentRun, on_delete=models.CASCADE)
+    alignment_run_fk = models.ForeignKey(AlignmentRun, related_name="alignments", on_delete=models.SET_NULL, blank=True, null=True)
     protein_ref_seq = models.CharField("Protein Reference Sequence", max_length=120)
     genome_ref_seq = models.CharField("Genome Reference Sequence", max_length=120)
-    matched_fragment = models.TextField("Matched Fragement")
+    matched_fragment = models.TextField("Matched Fragment")
     start_position = models.IntegerField("Start Position")
     end_position = models.IntegerField("End Position")
 
