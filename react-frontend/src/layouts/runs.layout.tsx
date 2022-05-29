@@ -4,6 +4,7 @@ import SuccessfulAlignments from "../components/successful-alignments.component"
 function RunsPage() {
   return (
     <div>
+      <br/>
       <InProgressRuns />
       <br/>
       <SuccessfulAlignments />
