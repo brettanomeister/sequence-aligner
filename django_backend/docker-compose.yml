@@ -1,6 +1,7 @@
 version: "3.9"
 services:
   api:
+    build: .
     command: >
       sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
@@ -30,8 +31,7 @@ services:
 
   celery:
     restart: always
-    build:
-      context: .
+    build: .
     command: celery -A app worker -l info
     volumes:
       - .:/code/django_backend
@@ -43,7 +43,7 @@ services:
       - DB_PASS=postgres
     depends_on:
       - db
-      - redis
+      - rabbit
       - api
 
 volumes:
