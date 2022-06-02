@@ -9,3 +9,5 @@ whitenoise==6.1.0
 gunicorn
 biopython
 requests
+celery
+redis

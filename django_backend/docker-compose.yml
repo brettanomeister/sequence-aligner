@@ -1,20 +1,12 @@
 version: "3.9"
 services:
   api:
-    build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: >
+      sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/code/django_backend
     ports:
       - "8000:8000"
-    depends_on:
-      - db
-
-  worker:
-    build: .
-    command: python ./worker/run.py
-    volumes:
-      - .:/code/worker
     depends_on:
       - db
 
@@ -26,6 +18,33 @@ services:
       - "5432:5432"
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
+
+  rabbit:
+    hostname: rabbit
+    image: rabbitmq:latest
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=mypass
+    ports:
+      - "5672:5672"
+
+  celery:
+    restart: always
+    build:
+      context: .
+    command: celery -A app worker -l info
+    volumes:
+      - .:/code/django_backend
+    working_dir: /code/django_backend/django_backend/
+    environment:
+      - DB_HOST=db
+      - DB_NAME=public
+      - DB_USER=postgres
+      - DB_PASS=postgres
+    depends_on:
+      - db
+      - redis
+      - api
 
 volumes:
   postgres_data:

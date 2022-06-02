@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework import status
 
+from worker.run_search import run_sequence_alignment_search
 from .models import AlignmentRun
 from .models import Alignment
 from .serializers import *
@@ -23,6 +24,7 @@ def alignment_runs_list(request):
         serializer = AlignmentRunSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
+            run_sequence_alignment_search(serializer.data.get("query"))
             return Response(status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
