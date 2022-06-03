@@ -15,7 +15,7 @@ def run_sequence_alignment_search(self, query: str, run_id: int):
             host="db",
             db="postgres"
         )
-        db = server["ginkgo"]
+        db = server["entrez"]
         sequence_records = db.items()
 
         search_records(query, run_id, sequence_records)

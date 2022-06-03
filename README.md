@@ -22,7 +22,7 @@ A React SPA is served statically by Django, and provides the user with views of 
 
 #### Setup
 
-The source code for this tool may be found on GitHub at [ginkgo-challenge](https://github.com/emerdenny/ginkgo-challenge) 
+The source code for this tool may be found on GitHub at [sequence-aligner](https://github.com/emerdenny/sequence-aligner) 
 
 Local development is best served by an ide such as PyCharm or VSCode, where development can be done remotely in the hosting docker containers in the context of the other services. A simple run configuration can be set up to bring up the `docker compose` cluster and run the `npm start`command with one keystroke.
 

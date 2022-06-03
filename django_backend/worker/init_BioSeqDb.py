@@ -14,8 +14,8 @@ def init_BioSeqDB(sender, **kwargs):
         db="postgres"
     )
 
-    db = server.new_database("ginkgo", description="mvp genome subset")
-    # db = server["ginkgo"]
+    db = server.new_database("entrez", description="mvp genome subset")
+    # db = server["entrez"]
 
     Entrez.api_key = "53f01e4342588b385fc495e98d7888be0808"
     Entrez.email = "emersonwd@gmail.com"
