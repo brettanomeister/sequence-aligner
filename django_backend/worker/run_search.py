@@ -68,7 +68,7 @@ def search_feature(query: str, feature_sequence: str):
 def persist_alignments(alignments: list, record: tuple, run_id: int):
     for a in alignments:
         res = requests.post(
-            "http://api:8000/api/alignments/",
+            "http://api:80/api/alignments/",
             data={
                 "protein_ref_seq": a[1].qualifiers["protein_id"][0],
                 "genome_ref_seq": record.id,
@@ -80,7 +80,7 @@ def persist_alignments(alignments: list, record: tuple, run_id: int):
         )
 
 def log_run_complete(run_id: int):
-    url = f"http://api:8000/api/alignment-runs/{run_id}"
+    url = f"http://api:80/api/alignment-runs/{run_id}"
     res = requests.request(
         "PATCH",
         url,

@@ -7,7 +7,7 @@ import {useQuery} from "react-query";
 
 async function getAlignmentRuns() {
   try {
-    const response = await axios.get(`http://${process.env.REACT_APP_DOMAIN}:8000/api/alignment-runs/`);
+    const response = await axios.get(`http://${process.env.REACT_APP_DOMAIN}/api/alignment-runs/`);
     return(response.data);
   } catch (error) {
     console.error(error);
@@ -16,7 +16,7 @@ async function getAlignmentRuns() {
 
 function RunAccordion() {
 
-  const [intervalMs, setIntervalMs] = React.useState(1000)
+  const [intervalMs, setIntervalMs] = React.useState(5000)
   const runsQres = useQuery<AlignmentRun[], Error>(
     'runs',
     () => getAlignmentRuns(),

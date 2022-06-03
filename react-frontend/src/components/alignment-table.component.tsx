@@ -7,7 +7,7 @@ import {useQuery} from "react-query";
 
 async function getAlignments() {
     try {
-        const response = await axios.get(`http://${process.env.REACT_APP_DOMAIN}:8000/api/alignments/`);
+        const response = await axios.get(`http://${process.env.REACT_APP_DOMAIN}/api/alignments/`);
         return(response.data);
     } catch (error) {
         console.error(error);
@@ -16,7 +16,7 @@ async function getAlignments() {
 
 function AlignmentTable() {
 
-  const [intervalMs, setIntervalMs] = React.useState(1000)
+  const [intervalMs, setIntervalMs] = React.useState(5000)
   const alignmentsQres = useQuery<Alignment[], Error>(
     'alignments',
     () => getAlignments(),

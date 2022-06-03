@@ -10,7 +10,7 @@ function CreateRunButtonModal() {
   console.log(JSON.stringify(Object.fromEntries(formData)));
     return(axios({
       method: "post",
-      url: 'http://localhost:8000/api/alignment-runs/',
+      url: `http://${process.env.REACT_APP_DOMAIN}/api/alignment-runs/`,
       headers: {'Content-Type': 'application/json'},
       data: JSON.stringify(Object.fromEntries(formData))})
       .then(function (response) {
