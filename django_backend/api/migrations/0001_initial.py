@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('description', models.CharField(max_length=240, verbose_name='Description')),
                 ('query', models.TextField(verbose_name='Description')),
                 ('submitted_at', models.DateTimeField(auto_now_add=True, verbose_name='Submitted At')),
-                ('completed_at', models.DateTimeField(blank=True, null=True, verbose_name='Compeleted At')),
+                ('completed_at', models.DateTimeField(blank=True, null=True, verbose_name='Completed At')),
             ],
         ),
         migrations.CreateModel(
@@ -29,7 +29,6 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('protein_ref_seq', models.CharField(max_length=120, verbose_name='Protein Reference Sequence')),
                 ('genome_ref_seq', models.CharField(max_length=120, verbose_name='Genome Reference Sequence')),
-                ('matched_fragment', models.TextField(verbose_name='Matched Fragment')),
                 ('start_position', models.IntegerField(verbose_name='Start Position')),
                 ('end_position', models.IntegerField(verbose_name='End Position')),
                 ('alignment_run_fk', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='alignments', to='api.alignmentrun')),

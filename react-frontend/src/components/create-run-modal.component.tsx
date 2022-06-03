@@ -29,6 +29,7 @@ function CreateRunButtonModal() {
   const onFormSubmit = (e: SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
     mutation.mutate(new FormData(e.currentTarget));
+    handleClose();
   }
 
   const [show, setShow] = useState(false);

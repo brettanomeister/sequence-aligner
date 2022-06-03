@@ -1,4 +1,4 @@
-import {Container, Nav, Navbar} from "react-bootstrap";
+import {Container, Navbar} from "react-bootstrap";
 import { LinkContainer } from 'react-router-bootstrap';
 
 function Header() {
@@ -10,11 +10,6 @@ function Header() {
             </LinkContainer>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                <LinkContainer to="/stats">
-                  <Nav.Link>Statistics</Nav.Link>
-                </LinkContainer>
-              </Nav>
             </Navbar.Collapse>
           </Container>
         </Navbar>

@@ -8,7 +8,7 @@ function InProgressRuns() {
       <Row>
         <Col xs lg="1" />
         <Col md="8">
-          <h2>In-Progress Runs</h2>
+          <h2>Alignment Search Runs</h2>
         </Col>
         <Col md="2" >
           <CreateRunButtonModal />

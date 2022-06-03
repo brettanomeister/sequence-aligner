@@ -1,3 +1,4 @@
+import React from "react";
 import {Table} from "react-bootstrap";
 import AlignmentTableItem from "./alignment-table-item.component";
 import axios from "axios";
@@ -15,7 +16,12 @@ async function getAlignments() {
 
 function AlignmentTable() {
 
-  const alignmentsQres = useQuery<Alignment[], Error>('alignments', () => getAlignments());
+  const [intervalMs, setIntervalMs] = React.useState(1000)
+  const alignmentsQres = useQuery<Alignment[], Error>(
+    'alignments',
+    () => getAlignments(),
+    {refetchInterval: intervalMs}
+  );
 
   if (alignmentsQres.isLoading) {
     return(<span>Loading...</span>);
@@ -40,7 +46,6 @@ function AlignmentTable() {
           <th>Genome Ref Seq</th>
           <th>Start</th>
           <th>End</th>
-          <th>Matched Fragment</th>
         </tr>
         </thead>
         <tbody>

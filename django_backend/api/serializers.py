@@ -22,6 +22,5 @@ class AlignmentSerializer(serializers.ModelSerializer):
                   'alignment_run_fk',
                   'protein_ref_seq',
                   'genome_ref_seq',
-                  'matched_fragment',
                   'start_position',
                   'end_position')

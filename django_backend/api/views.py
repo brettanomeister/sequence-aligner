@@ -24,13 +24,13 @@ def alignment_runs_list(request):
         serializer = AlignmentRunSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            run_sequence_alignment_search(serializer.data.get("query"))
+            run_sequence_alignment_search(serializer.data.get("query"), serializer.data.get("pk"))
             return Response(status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET', 'PUT', 'DELETE'])
+@api_view(['GET', 'PATCH', 'DELETE'])
 def alignment_run_detail(request, pk):
     try:
         alignment_run = AlignmentRun.objects.get(pk=pk)
@@ -42,8 +42,8 @@ def alignment_run_detail(request, pk):
 
         return Response(serializer.data)
 
-    elif request.method == 'PUT':
-        serializer = AlignmentRunSerializer(alignment_run, data=request.data, context={'request', request})
+    elif request.method == 'PATCH':
+        serializer = AlignmentRunSerializer(alignment_run, data=request.data, context={'request', request}, partial=True)
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_204_NO_CONTENT)

@@ -1,3 +1,4 @@
+import React from "react";
 import {Accordion} from "react-bootstrap";
 import RunAccordionItem from "./run-accordion-item.component";
 import {AlignmentRun} from "../models/alignment-run.interface";
@@ -15,7 +16,11 @@ async function getAlignmentRuns() {
 
 function RunAccordion() {
 
-  const runsQres = useQuery<AlignmentRun[], Error>('runs', () => getAlignmentRuns());
+  const [intervalMs, setIntervalMs] = React.useState(1000)
+  const runsQres = useQuery<AlignmentRun[], Error>(
+    'runs',
+    () => getAlignmentRuns(),
+    {refetchInterval: intervalMs});
 
   if (runsQres.isLoading) {
     return(<span>Loading...</span>);
