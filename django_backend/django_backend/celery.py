@@ -1,3 +1,8 @@
-from __future__ import absolute_import
+import os
 from celery import Celery
-app = Celery('app', broker='amqp://admin:mypass@10.211.55.12:5672', backend='rpc://', include=['app.tasks'])
+
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_backend.settings')
+
+app = Celery('django_backend')
+app.config_from_object('django.conf:settings', namespace='CELERY')
+app.autodiscover_tasks()

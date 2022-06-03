@@ -26,25 +26,32 @@ services:
     environment:
       - RABBITMQ_DEFAULT_USER=admin
       - RABBITMQ_DEFAULT_PASS=mypass
+      - SERVICE_PORTS=5672
+      - TCP_PORTS=5672
     ports:
       - "5672:5672"
 
   celery:
     restart: always
     build: .
-    command: celery -A app worker -l info
+    command: celery -A django_backend worker -l info
     volumes:
       - .:/code/django_backend
-    working_dir: /code/django_backend/django_backend/
+    working_dir: /code/django_backend/
     environment:
       - DB_HOST=db
       - DB_NAME=public
       - DB_USER=postgres
       - DB_PASS=postgres
+    links:
+      - rabbit
     depends_on:
       - db
       - rabbit
       - api
+#    deploy:
+#      mode: replicated
+#      replicas: 3
 
 volumes:
   postgres_data:

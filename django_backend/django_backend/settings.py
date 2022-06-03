@@ -23,6 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-iu9s41ht-_n&a2bx8c(blseyb4ibc)eq*pwpjg&&eu&j$+-j*0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# TODO false
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
@@ -133,5 +134,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CELERY_BROKER_URL = "redis://redis:6379"
-CELERY_RESULT_BACKEND = "redis://redis:6379"
+CELERY_BROKER_URL = 'amqp://admin:mypass@rabbit:5672'
+CELERY_RESULT_BACKEND = 'rpc://'
