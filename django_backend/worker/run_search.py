@@ -32,17 +32,18 @@ def search_records(query: str, run_id: int, sequence_records):
 
 
 def search_record(query: str, run_id: int, record):
-    alignments = []
+    best_match = None
 
     for feature in record.features:
         if 'product' in feature.qualifiers and 'protein' in ' '.join(feature.qualifiers['product']):
             feature_sequence = feature.extract(record.seq)
             alignment = search_feature(query, feature_sequence)
-            if alignment is not None:
-                alignments.append((alignment, feature))
+            if best_match is not None and best_match[0].score < alignment.score:
+                best_match = (alignment, feature)
+            elif best_match is None:
+                best_match = (alignment, feature)
 
-    if len(alignments) > 0:
-        persist_alignments(alignments, record, run_id)
+    persist_alignment(best_match, record, run_id)
 
 
 def search_feature(query: str, feature_sequence: str):
@@ -58,29 +59,24 @@ def search_feature(query: str, feature_sequence: str):
         one_alignment_only=True
     )
 
-    # return result if the alignment score is greater than 90% of the max possible score
-    if alignment[0].score > (0.9 * (len(query) + 1)):
-        return alignment[0]
-    else:
-        return None
+    return alignment[0]
 
 
-def persist_alignments(alignments: list, record: tuple, run_id: int):
-    for a in alignments:
-        res = requests.post(
-            "http://api:80/api/alignments/",
-            data={
-                "protein_ref_seq": a[1].qualifiers["protein_id"][0],
-                "genome_ref_seq": record.id,
-                "matched_fragment": "abcd",
-                "start_position": a[0].start,
-                "end_position": a[0].end,
-                "alignment_run_fk": run_id
-            }
-        )
+def persist_alignment(best_match: tuple, record: tuple, run_id: int):
+    res = requests.post(
+        "http://api:8000/api/alignments/",
+        data={
+            "protein_ref_seq": best_match[1].qualifiers["protein_id"][0],
+            "genome_ref_seq": record.id,
+            "matched_fragment": "abcd",
+            "start_position": best_match[0].start,
+            "end_position": best_match[0].end,
+            "alignment_run_fk": run_id
+        }
+    )
 
 def log_run_complete(run_id: int):
-    url = f"http://api:80/api/alignment-runs/{run_id}"
+    url = f"http://api:8000/api/alignment-runs/{run_id}"
     res = requests.request(
         "PATCH",
         url,
