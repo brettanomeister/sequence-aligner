@@ -35,11 +35,3 @@ Running the project in a production environment is more complicated, but this is
 5. Attach to a `tmux` session and run `docker compose up` in the project root. Detatch the tmux session allowing your application to continue to run in a headless state. (You can also run docker in a headless state by passing the `-d` flag if you prefer)
 
 You can see an example running at [www.ewd.tools](http://www.ewd.tools)
-
-#### Thanks
-
-Thank you for taking the time to review my submission! There are certainly many areas that could be improved, and I look forward to hearing any and all feedback you might have for me.
-
-Best,
-
-Emerson
