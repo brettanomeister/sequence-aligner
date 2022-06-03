@@ -8,8 +8,6 @@ from .models import AlignmentRun
 from .models import Alignment
 from .serializers import *
 
-def index(request):
-    return HttpResponse('Django example')
 
 @api_view(['GET', 'POST'])
 def alignment_runs_list(request):
