@@ -7,7 +7,7 @@ import {useQuery} from "react-query";
 
 async function getAlignmentRuns() {
   try {
-    const response = await axios.get(`http://localhost:8000/api/alignment-runs/`);
+    const response = await axios.get(`http://${process.env.REACT_APP_DOMAIN}:8000/api/alignment-runs/`);
     return(response.data);
   } catch (error) {
     console.error(error);
