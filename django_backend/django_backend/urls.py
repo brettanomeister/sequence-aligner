@@ -15,11 +15,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
+from django.shortcuts import render
 from api import views
+
+def render_react(request):
+    return render(request, "index.html")
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", views.index, name="index"),
+    re_path(r'^(?!api).*$', render_react),
     re_path(r'^api/alignment-runs/$', views.alignment_runs_list),
     re_path(r'^api/alignment-runs/(\d)$', views.alignment_run_detail),
     re_path(r'^api/alignments/$', views.alignments_list),

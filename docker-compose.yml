@@ -1,20 +1,59 @@
+#production
+
 version: "3.9"
 services:
   api:
     build: ./django_backend
-    command: python manage.py runserver 0.0.0.0:8000
+    command: >
+      sh -c "python manage.py migrate && python manage.py collectstatic && python manage.py runserver --nostatic"
     volumes:
       - ./django_backend:/code/django_backend
     ports:
       - "8000:8000"
     depends_on:
       - db
+
   db:
     image: postgres:13
     volumes:
       - postgres_data:/var/lib/postgresql/data/
+    ports:
+      - "5432:5432"
     environment:
       - "POSTGRES_HOST_AUTH_METHOD=trust"
+
+  rabbit:
+    hostname: rabbit
+    image: rabbitmq:latest
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=mypass
+      - SERVICE_PORTS=5672
+      - TCP_PORTS=5672
+    ports:
+      - "5672:5672"
+
+  celery:
+    restart: always
+    build: ./django_backend
+    command: celery -A django_backend worker -l info
+    volumes:
+      - ./django_backend:/code/django_backend
+    working_dir: /code/django_backend/
+    environment:
+      - DB_HOST=db
+      - DB_NAME=public
+      - DB_USER=postgres
+      - DB_PASS=postgres
+    links:
+      - rabbit
+    depends_on:
+      - db
+      - rabbit
+      - api
+#    deploy:
+#      mode: replicated
+#      replicas: 3
 
 volumes:
   postgres_data:

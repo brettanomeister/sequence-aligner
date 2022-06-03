@@ -36,7 +36,7 @@ function RunAccordion() {
 
   if (runsQres.isSuccess) {
     return (
-      <Accordion defaultActiveKey={runsQres.data.flatMap(run => run.pk.toString())} alwaysOpen>
+      <Accordion defaultActiveKey={runsQres.data?.flatMap(run => run.pk.toString())} alwaysOpen>
         {runsQres.data.map((run) => {
           return <RunAccordionItem run={run}/>;
         })}

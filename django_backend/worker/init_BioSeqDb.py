@@ -1,3 +1,4 @@
+import psycopg2
 from Bio import Entrez
 from Bio import SeqIO
 from BioSQL import BioSeqDatabase
@@ -34,6 +35,9 @@ def init_BioSeqDB(sender, **kwargs):
         handle = Entrez.efetch(db="nuccore", id=gi_list, rettype="gb", retmode="text")
         records = SeqIO.parse(handle, "gb")
 
-        count = db.load(records)
-        print("Loaded %i records" % count)
-        server.commit()
+        try:
+            count = db.load(records)
+            print("Loaded %i records" % count)
+            server.commit()
+        except psycopg2.Error as e:
+            return
